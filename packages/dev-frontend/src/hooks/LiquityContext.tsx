@@ -34,7 +34,7 @@ const wsParams = (network: string, infuraApiKey: string): [string, string] => [
 ];
 
 const projectNetworks: { [name: string]: Network } = {
-    bakerloo: { chainId: 444900, name: "bakerloo" }
+  piccadilly: { chainId: 65100000, name: "piccadilly" }
 }
 
 const getNetwork = (network: Networkish): Network => {
@@ -67,7 +67,7 @@ const getNetwork = (network: Networkish): Network => {
 // NOTE: Able / disable ETH networks
 // const infuraSupportedNetworks = ["homestead", "kovan", "rinkeby", "ropsten", "goerli"];
 const infuraSupportedNetworks = [""];
-const webSocketSupportedNetworks = ["bakerloo"];
+const webSocketSupportedNetworks = ["piccadilly"];
 
 export const isWalletConnected = (account: string | null | undefined) => account && account !== "0x0000000000000000000000000000000000000000"
 
@@ -81,6 +81,7 @@ export const LiquityProvider: React.FC<LiquityProviderProps> = ({
   const [config, setConfig] = useState<LiquityFrontendConfig>();
 
   console.log({provider, account, chainId});
+  
 
   const connection = useMemo(() => {
     if (config && provider && chainId) {
@@ -91,7 +92,9 @@ export const LiquityProvider: React.FC<LiquityProviderProps> = ({
           frontendTag: config.frontendTag,
           useStore: "blockPolled"
         });
-      } catch {}
+      } catch(e) {
+        console.log(e);
+      }
     }
   }, [config, provider, account, chainId]);
 
@@ -117,7 +120,7 @@ export const LiquityProvider: React.FC<LiquityProviderProps> = ({
         ) {
           provider.openWebSocket(...wsParams(network.name, config.infuraApiKey));
         } else if (webSocketSupportedNetworks.includes(network.name)) {
-          provider.openWebSocket(`wss://rpc1.bakerloo.autonity.network:8546`, chainId);
+          provider.openWebSocket(`wss://rpc1.piccadilly.autonity.org:8546`, chainId);
         } else if (connection._isDev) {
           provider.openWebSocket(`ws://${window.location.hostname}:8546`, chainId);
         }

@@ -112,8 +112,8 @@ const config: HardhatUserConfig = {
       accounts: [deployerAccount, devChainRichAccount, ...generateRandomAccounts(numAccounts - 2)]
     },
 
-    bakerloo: {
-        url: "https://rpc2.bakerloo.autonity.network:8545",
+    piccadilly: {
+        url: "https://rpc1.piccadilly.autonity.org",
         accounts: [deployerAccount]
     },
 
