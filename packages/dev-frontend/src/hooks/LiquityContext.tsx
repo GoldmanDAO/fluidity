@@ -80,9 +80,6 @@ export const LiquityProvider: React.FC<LiquityProviderProps> = ({
   const { library: provider, account, chainId } = useWeb3React();
   const [config, setConfig] = useState<LiquityFrontendConfig>();
 
-  console.log({provider, account, chainId});
-  
-
   const connection = useMemo(() => {
     if (config && provider && chainId) {
       let tempAccount = account || '0x0000000000000000000000000000000000000000'

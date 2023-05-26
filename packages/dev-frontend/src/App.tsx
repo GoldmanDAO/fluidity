@@ -16,8 +16,6 @@ import { LiquityFrontend } from "./LiquityFrontend";
 
 // Start pre-fetching the config
 getConfig().then(config => {
-  // console.log("Frontend config:");
-  // console.log(config);
   Object.assign(window, { config });
 });
 
