@@ -185,12 +185,15 @@ export class BlockPolledLiquityStore extends LiquityStore<BlockPolledLiquityStor
     });
 
     const blockListener = async (blockTag: number) => {
-      const state = await this._get(blockTag);
+      const newBlockTimestamp = await this._readable._getBlockTimestamp(blockTag)
+      if(newBlockTimestamp - this.state.blockTimestamp > 5000) {
+        const state = await this._get(blockTag);
 
-      if (this._loaded) {
-        this._update(...state);
-      } else {
-        this._load(...state);
+        if (this._loaded) {
+          this._update(...state);
+        } else {
+          this._load(...state);
+        }
       }
     };
 

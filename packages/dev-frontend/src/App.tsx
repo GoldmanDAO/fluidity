@@ -16,8 +16,6 @@ import { LiquityFrontend } from "./LiquityFrontend";
 
 // Start pre-fetching the config
 getConfig().then(config => {
-  // console.log("Frontend config:");
-  // console.log(config);
   Object.assign(window, { config });
 });
 
@@ -76,7 +74,7 @@ const App = () => {
       }}
     >
       <Warning>
-        Opal is not yet deployed to this network. Please switch to Bakerloo.
+        Opal is not yet deployed to this network. Please switch to Piccadilly.
       </Warning>      
     </Flex>
   );
